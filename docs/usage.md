@@ -12,7 +12,9 @@ GITINFO_GITLAB_TOKEN=<private-access-token>
 ```
 
 If the GitLab instance is self-hosted and has a self-signed HTTPS certificate,
-the CA-certificate should be mounted into the container at `ca.pem:/etc/ssl/certs/ca.pem`.
+the CA-certificate should be mounted into the container, e.g at:
+`./ca.crt:/usr/local/share/ca-certificates/ca.crt`.
+The container entry point automatically calls `update-ca-certificates`.
 
 The container uses various tools to produce HTML statistics reports, accessible
 via an nginx-server. The tools are invoked when the script
@@ -29,5 +31,5 @@ This service is stateless and does not require backup.
 Docker Compose
 --------------
 
-The repository contains a docker-compose example, including a template for
-the needed environment variables and ca-certificate mounts.
+The repository contains a docker-compose example `docker-compose.yml`,
+including a template for the needed environment variables and ca-certificate mounts.

@@ -16,4 +16,4 @@ services:
       GITINFO_GITLAB_USER: ${GITINFO_GITLAB_USER:?Variable GITINFO_GITLAB_USER is empty or not set!}
       GITINFO_GITLAB_TOKEN: ${GITINFO_GITLAB_TOKEN:?Variable GITINFO_GITLAB_TOKEN is empty or not set!}
     volumes:
-     - ./ca.pem:/etc/ssl/certs/ca.pem
+      - ./ca.crt:/usr/local/share/ca-certificates/ca.crt
