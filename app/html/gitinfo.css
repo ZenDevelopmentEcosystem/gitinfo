@@ -1,0 +1,50 @@
+div {
+    border-radius: 4px;
+    padding: 5px;
+}
+div.status-success {
+    background-color: #e5ffe5;
+}
+div.status-timeout {
+    background-color: #d1d1d1;
+}
+div.status-error {
+    background-color: #c59090;
+}
+div.status-notrun {
+    background-color: #aaaaaa;
+    display: None;
+}
+
+div.status-running {
+    background-color: #dddddd;
+}
+
+div.status-running a {
+    color: currentColor;
+    cursor: not-allowed;
+    opacity: 0.5;
+    text-decoration: none;
+}
+
+table.status-table {
+    padding: 10px;
+    border-collapse: collapse;
+}
+
+tr.header {
+    background-color: rgb(33, 134, 134);
+}
+
+th, td {
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+th {
+    background-color: rgb(150, 101, 10);
+    color: white;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}

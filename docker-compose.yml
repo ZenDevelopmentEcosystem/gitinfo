@@ -1,0 +1,19 @@
+---
+version: "3.7"
+services:
+  gitinfo:
+    image: perbohlin/gitinfo:latest
+    container_name: gitinfo
+    restart: always
+    expose:
+      - 80
+    ports:
+      - 8086:80
+    environment:
+      VIRTUAL_HOST: gitinfo.dev.localhost
+      VIRTUAL_PORT: 80
+      GITINFO_GITLAB_URL: ${GITINFO_GITLAB_URL:?Variable GITINFO_GITLAB_URL is empty or not set!}
+      GITINFO_GITLAB_USER: ${GITINFO_GITLAB_USER:?Variable GITINFO_GITLAB_USER is empty or not set!}
+      GITINFO_GITLAB_TOKEN: ${GITINFO_GITLAB_TOKEN:?Variable GITINFO_GITLAB_TOKEN is empty or not set!}
+    volumes:
+     - ./ca.pem:/etc/ssl/certs/ca.pem

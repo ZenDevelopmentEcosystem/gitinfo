@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+function gitinfo-devenv-source {
+    echo "Sourcing GitInfo Scripts: gitinfo-init.sh, gitinfo-update.sh"
+    source app/gitinfo/gitinfo-init.sh
+    source app/gitinfo/gitinfo-update.sh
+}
+
+function gitinfo-devenv-setup {
+    trap gitinfo-devenv-cleanup EXIT
+    echo "Setting up GitInfo DevEnv"
+    export REPO_BASE_DIR=/tmp/gitinfo/repos
+    export OUTPUT_BASE_DIR=/tmp/gitinfo/
+    echo "REPO_BASE_DIR=${REPO_BASE_DIR}"
+    echo "OUTPUT_BASE_DIR=${OUTPUT_BASE_DIR}"
+    mkdir -p "${REPO_BASE_DIR}"
+    mkdir -p "${OUTPUT_BASE_DIR}"
+}
+
+function gitinfo-devenv-cleanup {
+    echo "Cleaning up GitInfo DevEnv"
+    rm -rf "${REPO_BASE_DIR}"
+    rm -rf "${OUTPUT_BASE_DIR}"
+}
+
+gitinfo-devenv-setup
+gitinfo-devenv-source

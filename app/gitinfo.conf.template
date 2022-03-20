@@ -1,0 +1,8 @@
+
+server {
+    server_name ${VIRTUAL_HOST};
+    listen ${VIRTUAL_PORT};
+    root /usr/share/nginx/html;
+    autoindex on;
+    autoindex_format html;
+}
