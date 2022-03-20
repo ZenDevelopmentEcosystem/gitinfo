@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+(return 0 2>/dev/null) || set -eu
+
 function log-date() {
     date --rfc-3339=seconds
 }

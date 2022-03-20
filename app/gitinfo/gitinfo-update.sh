@@ -6,6 +6,7 @@ GITINFO_BASE_DIR=$(dirname "$(readlink -f "${BASH_SOURCE[0]}" 2>/dev/null||echo 
 
 REPO_BASE_DIR=${REPO_BASE_DIR:-/gitinfo/repositories}
 OUTPUT_BASE_DIR=${OUTPUT_BASE_DIR:-/usr/share/nginx/html}
+TEMP_DIR=${TEMP_DIR:-/gitinfo/tmp}
 TIMEOUT=${TIMEOUT:-600s}
 
 # shellcheck source=gitinfo-tools.sh
@@ -16,6 +17,9 @@ source "${GITINFO_BASE_DIR}/gitinfo-status.sh"
 
 # shellcheck source=gitinfo-repositories.sh
 source "${GITINFO_BASE_DIR}/gitinfo-repositories.sh"
+
+# shellcheck source=gitinfo-logging.sh
+source "${GITINFO_BASE_DIR}/gitinfo-logging.sh"
 
 source-tools
 

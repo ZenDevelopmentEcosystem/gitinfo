@@ -32,8 +32,9 @@ function set-name() {
     local status_file=$1
     local repo=$2
     local name=$3
-    result=$(jq --sort-keys ".repositories.\"${repo}\".name=\"${name}\"" "${status_file}")
-    echo "${result}" > "${status_file}"
+    local tmp_file=${status_file}.tmp
+    jq --sort-keys ".repositories.\"${repo}\".name=\"${name}\"" "${status_file}" > "${tmp_file}"
+    mv "${tmp_file}" "${status_file}"
 }
 
 # $1 - Status file
@@ -43,8 +44,9 @@ function set-path() {
     local status_file=$1
     local repo=$2
     local path=$3
-    result=$(jq --sort-keys ".repositories.\"${repo}\".path=\"${path}\"" "${status_file}")
-    echo "${result}" > "${status_file}"
+    local tmp_file=${status_file}.tmp
+    jq --sort-keys ".repositories.\"${repo}\".path=\"${path}\"" "${status_file}" > "${tmp_file}"
+    mv "${tmp_file}" "${status_file}"
 }
 
 # $1 - Status file
@@ -56,9 +58,9 @@ function set-status() {
     local repo=$2
     local tool=$3
     local status=$4
-    local result;
-    result=$(jq --sort-keys ".repositories.\"${repo}\".tools.${tool}={ \"status\": \"${status}\", \"date\": \"$(date)\" }" "${status_file}")
-    echo "${result}" > "${status_file}"
+    local tmp_file=${status_file}.tmp
+    jq --sort-keys ".repositories.\"${repo}\".tools.${tool}={ \"status\": \"${status}\", \"date\": \"$(date)\" }" "${status_file}" > "${tmp_file}"
+    mv "${tmp_file}" "${status_file}"
 }
 
 # $1 - Status file
@@ -68,8 +70,9 @@ function set-branch() {
     local status_file=$1
     local repo=$2
     local branch=$3
-    result=$(jq --sort-keys ".repositories.\"${repo}\".branch=\"${branch}\"" "${status_file}")
-    echo "${result}" > "${status_file}"
+    local tmp_file=${status_file}.tmp
+    jq --sort-keys ".repositories.\"${repo}\".branch=\"${branch}\"" "${status_file}" > "${tmp_file}"
+    mv "${tmp_file}" "${status_file}"
 }
 
 # $1 - Status file
@@ -79,8 +82,9 @@ function set-url() {
     local status_file=$1
     local repo=$2
     local url=$3
-    result=$(jq --sort-keys ".repositories.\"${repo}\".url=\"${url}\"" "${status_file}")
-    echo "${result}" > "${status_file}"
+    local tmp_file=${status_file}.tmp
+    jq --sort-keys ".repositories.\"${repo}\".url=\"${url}\"" "${status_file}" > "${tmp_file}"
+    mv "${tmp_file}" "${status_file}"
 }
 
 # $1 - Status file
@@ -90,8 +94,9 @@ function set-commit() {
     local status_file=$1
     local repo=$2
     local commit=$3
-    result=$(jq --sort-keys ".repositories.\"${repo}\".commit=\"${commit}\"" "${status_file}")
-    echo "${result}" > "${status_file}"
+    local tmp_file=${status_file}.tmp
+    jq --sort-keys ".repositories.\"${repo}\".commit=\"${commit}\"" "${status_file}" > "${tmp_file}"
+    mv "${tmp_file}" "${status_file}"
 }
 
 # $1 - Status file
@@ -99,7 +104,7 @@ function set-commit() {
 function set-tools() {
     local status_file=$1; shift
     declare -a tools=( "$@" )
-    local result;
-    result=$(jq --sort-keys --argjson args "$(printf '%s\n' "${tools[@]}"|jq -nR '[inputs]')" '.tools=$args' "${status_file}")
-    echo "${result}" > "${status_file}"
+    local tmp_file=${status_file}.tmp
+    jq --sort-keys --argjson args "$(printf '%s\n' "${tools[@]}"|jq -nR '[inputs]')" '.tools=$args' "${status_file}" > "${tmp_file}"
+    mv "${tmp_file}" "${status_file}"
 }
