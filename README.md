@@ -8,6 +8,15 @@ Integrated tools:
 * [gitinspector](https://github.com/ejwa/gitinspector)
 * [gitstats](http://gitstats.sourceforge.net/)
 
+Docker
+------
+
+The official docker image:
+
+```console
+docker pull perbohlin/gitinfo
+```
+
 Documentation
 -------------
 

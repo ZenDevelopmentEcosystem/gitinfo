@@ -1,6 +1,12 @@
 Usage
 =====
 
+The official docker image:
+
+```console
+docker pull perbohlin/gitinfo
+```
+
 Using environmental variables, the container clones all repositories from gitlab
 at `GITINFO_GITLAB_URL` accessible by the user `GITINFO_GITLAB_USER` and access
 token `GITINFO_GITLAB_TOKEN`.
